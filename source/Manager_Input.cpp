@@ -63,6 +63,7 @@ void Manager_Input::process_inputs()
 
     if (this->keys & KEY_TOUCH) {
 
+        //this->tp = touchReadXY();
         touchRead(&this->tp);
 
         if ( !(this->keys_bak & KEY_TOUCH) ){

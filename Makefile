@@ -83,6 +83,9 @@ export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 			$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 			-I$(CURDIR)/$(BUILD)
 
+export INSTALL_INCLUDE := $(DEVKITPRO)/libnds/include/libgoengine
+export INSTALL_LIB := $(DEVKITPRO)/libnds/lib
+
 .PHONY: $(BUILD) clean all
 
 #---------------------------------------------------------------------------------
@@ -94,6 +97,16 @@ lib:
 $(BUILD): lib
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+
+install:
+	@echo $(INSTALL_INCLUDE)
+	@echo 'Installing libgoengine include files into $(INSTALL_INCLUDE)'
+	@[ -d $(INSTALL_INCLUDE) ] || mkdir -p $(INSTALL_INCLUDE)
+	@cp -rv $(CURDIR)/include/* $(INSTALL_INCLUDE)/
+	@echo $(INSTALL_LIB)
+	@echo 'Installing libgoengine lib files into $(INSTALL_LIB)'
+	@[ -d $(INSTALL_LIB) ] || mkdir -p $(INSTALL_LIB)
+	@cp $(CURDIR)/lib/* $(INSTALL_LIB)/
 
 #---------------------------------------------------------------------------------
 clean:
@@ -122,3 +135,5 @@ $(OUTPUT)	:	$(OFILES)
 #---------------------------------------------------------------------------------------
 endif
 #---------------------------------------------------------------------------------------
+
+# vim:noet:sts=0:ts=4
