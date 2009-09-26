@@ -38,6 +38,7 @@ class Manager_Display
         void flush_display();
 
         void set_camera(Model_Camera * xp_camera);
+        void unset_camera(void);
         void set_scene(Model_Scene * xp_scene);
     protected:
     private:

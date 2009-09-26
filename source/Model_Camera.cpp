@@ -18,14 +18,18 @@ Model_Camera::Model_Camera()
 {
     this->setLookAt(CAMERA_MODE_FRONT,NULL);
     this->fov = 35;
-    this->ratio = divf32( inttof32(SCREEN_WIDTH) , inttof32(SCREEN_HEIGHT) );
-    this->min_z = floattof32(0.1);
-    this->max_z = inttof32(40);
+    this->ratio = 1.33;
+    this->min_z = 1;
+    this->max_z = 1000;
+//    this->fov = (int) (degreesToAngle(35));
+//    this->ratio = divf32( floattof32(SCREEN_WIDTH) , floattof32(SCREEN_HEIGHT) );
+//    this->min_z = floattof32(1);
+//    this->max_z = floattof32(1000);
     this->dir_front = 0;
     this->dir_right = 0;
     this->dir_up = 0;
     this->dir_len = floattof32(0.05);
-    this->dist_from_target = 0x5000;
+    this->dist_from_target = floattof32(3);
 }
 
 /*
@@ -75,7 +79,7 @@ void Model_Camera::setLookAt(int mode,Model_Vector * l)
  */
 void Model_Camera::initCamera(void)
 {
-    this->max_step = inttof32(200);
+    this->max_step = 300;
     this->step = this->max_step;
 
     this->computeLookAt();
@@ -133,14 +137,15 @@ void Model_Camera::computeDirection(void)
 
 void Model_Camera::computePosition(void)
 {
-    int32 alpha,beta,m,n;
+    s16 alpha,beta;
+    int32 m,n;
 
     int32 stp = this->step;
     this->r_cam_real.set_rot_ox( this->r_cam_real_bk.get_rot_ox() + mulf32(this->r_cam_stp.get_rot_ox(),stp) );
     this->r_cam_real.set_rot_oy( this->r_cam_real_bk.get_rot_oy() + mulf32(this->r_cam_stp.get_rot_oy(),stp) );
 
-    alpha = f32toint( this->r_cam_real.get_rot_oy() );
-    beta  = f32toint( this->r_cam_real.get_rot_ox() );
+    alpha = degreesToAngle( f32toint(this->r_cam_real.get_rot_oy()) );
+    beta  = degreesToAngle( f32toint(this->r_cam_real.get_rot_ox()) );
 
     m = mulf32( cosLerp(beta) , this->dist_from_target);
     n = mulf32( sinLerp(beta) , this->dist_from_target);
@@ -257,7 +262,7 @@ void Model_Camera::moveUp(int32 dir)
 void Model_Camera::RotateCamera(int alpha,int beta)
 {
     int32 len_x,len_y;
-    int32 min=inttof32(-120),max=inttof32(120);
+    int32 min=floattof32(-87),max=floattof32(87);
 
 
     this->r_cam_final.set_rot_ox( this->r_cam_catch.get_rot_ox() +  inttof32(beta)  );

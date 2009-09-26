@@ -41,10 +41,14 @@ class Model_Camera {
 	int32       max_step; //Maximum step (ms)
 	int         animated; //Is the camera animated?
 
-	int32       fov;  //Field Of View
-	int32       ratio;//Ratio de l'ecran
-	int32       min_z;//Minimum Z de la camera
-	int32       max_z;//Maximum Z de la camera
+	float       fov;  //Field Of View
+	float       ratio;//Ratio de l'ecran
+	float       min_z;//Minimum Z de la camera
+	float       max_z;//Maximum Z de la camera
+//	int32       fov;  //Field Of View
+//	int32       ratio;//Ratio de l'ecran
+//	int32       min_z;//Minimum Z de la camera
+//	int32       max_z;//Maximum Z de la camera
 
 	int         dir_front; //1=avance, 0=stop, -1=recule
 	int         dir_right; //1=droite, 0=stop, -1=gauche
