@@ -6,7 +6,7 @@
 #include <nds/arm9/videoGL.h>
 #include <nds/arm9/video.h>
 
-#include "Model_Camera.h"
+#include <GOEN_Model_Camera.h>
 
 
 /*

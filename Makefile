@@ -26,16 +26,16 @@ INCLUDES	:=	include
 #---------------------------------------------------------------------------------
 ARCH	:=	-mthumb -mthumb-interwork
 
+OPT := -fomit-frame-pointer -ffast-math
 CFLAGS	:=	-g -Wall -O2\
 		-march=armv5te -mtune=arm946e-s \
-		-fomit-frame-pointer -ffast-math \
+		$(OPT) \
 		$(ARCH)
 
 CFLAGS	+=	$(INCLUDE) -DARM9
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions
 
-#ASFLAGS	:=	-g $(ARCH) -march=armv5te -mtune=arm946e-s
-ASFLAGS	:=	-g $(ARCH)
+ASFLAGS	:=	-g $(ARCH) -march=armv5te -mtune=arm946e-s
 LDFLAGS	=	-specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 #---------------------------------------------------------------------------------
@@ -61,6 +61,7 @@ export DEPSDIR	:=	$(CURDIR)/$(BUILD)
 CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 CPPFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.cpp)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
+HFILES		:=	$(foreach dir,$(SOURCES),$(wildcard $(dir)/*.h))
 BINFILES	:=	$(foreach dir,$(DATA),$(notdir $(wildcard $(dir)/*.*)))
 
 #---------------------------------------------------------------------------------
@@ -84,30 +85,33 @@ export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 			$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 			-I$(CURDIR)/$(BUILD)
 
-export INSTALL_INCLUDE := $(DEVKITPRO)/libnds/include/libgoengine
-export INSTALL_LIB := $(DEVKITPRO)/libnds/lib
+export INSTALL_PATH := $(DEVKITPRO)/$(TARGET)
 
-.PHONY: $(BUILD) clean all
+export INSTALL := install -C -v
+
+.PHONY: $(BUILD) lib include clean all demo
 
 #---------------------------------------------------------------------------------
-all: $(BUILD)
+all: lib include $(BUILD) demo
+
+demo:
+	@$(MAKE) -C demo
 
 lib:
-	@[ -d $@ ] || mkdir -p $@
-	
+	@[ -d lib ] || mkdir -p lib
+
 $(BUILD): lib
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 install:
-	@echo $(INSTALL_INCLUDE)
-	@echo 'Installing libgoengine include files into $(INSTALL_INCLUDE)'
-	@[ -d $(INSTALL_INCLUDE) ] || mkdir -p $(INSTALL_INCLUDE)
-	@cp -rv $(CURDIR)/include/* $(INSTALL_INCLUDE)/
-	@echo $(INSTALL_LIB)
-	@echo 'Installing libgoengine lib files into $(INSTALL_LIB)'
-	@[ -d $(INSTALL_LIB) ] || mkdir -p $(INSTALL_LIB)
-	@cp $(CURDIR)/lib/* $(INSTALL_LIB)/
+	$(INSTALL) -d $(INSTALL_PATH)/lib $(INSTALL_PATH)/include
+	$(INSTALL) -m 644 $(CURDIR)/lib/* $(INSTALL_PATH)/lib
+	$(INSTALL) -m 644 $(CURDIR)/include/* $(INSTALL_PATH)/include
+
+uninstall:
+	@rm -rvf $(INSTALL_PATH)
+
 
 #---------------------------------------------------------------------------------
 clean:

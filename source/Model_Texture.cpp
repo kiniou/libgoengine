@@ -1,4 +1,4 @@
-#include "Model_Texture.h"
+#include <GOEN_Model_Texture.h>
 
 Model_Texture::Model_Texture()
 {

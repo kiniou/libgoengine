@@ -4,14 +4,12 @@
 #include <nds.h>
 #include <malloc.h>
 #include <nds/arm9/image.h>
-//#include <nds/arm9/trig_lut.h>
-//#include <nds/arm9/input.h>
 #include <nds/arm9/videoGL.h>
 
 
-#include "Model_Object.h"
-#include "Model_Camera.h"
-#include "Model_Scene.h"
+#include <GOEN_Model_Object.h>
+#include <GOEN_Model_Camera.h>
+#include <GOEN_Model_Scene.h>
 
 class Manager_Display
 {

@@ -15,7 +15,7 @@
 
 //#include <fat.h>
 
-#include "Model_Scene.h"
+#include <GOEN_Model_Scene.h>
 
 #define MAXCAR_IN_LINE 256
 

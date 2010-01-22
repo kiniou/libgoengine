@@ -7,7 +7,7 @@
  *
  */
 
-#include "Model_Vector.h"
+#include <GOEN_Model_Vector.h>
 
 Model_Vector::Model_Vector ()
 {

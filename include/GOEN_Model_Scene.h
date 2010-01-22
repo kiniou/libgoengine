@@ -2,8 +2,9 @@
 #define _Model_SCENE_H
 
 #include <string.h>
-#include "Model_Object.h"
-#include "Model_Camera.h"
+
+#include <GOEN_Model_Object.h>
+#include <GOEN_Model_Camera.h>
 
 class Model_Scene
 {

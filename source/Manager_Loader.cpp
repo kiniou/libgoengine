@@ -6,7 +6,7 @@
  * 08/10/2007 : Implementations of the Loader
  *
  */
-#include "Manager_Loader.h"
+#include <GOEN_Manager_Loader.h>
 
 Manager_Loader::Manager_Loader()
 {

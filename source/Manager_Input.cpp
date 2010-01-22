@@ -1,4 +1,4 @@
-#include "Manager_Input.h"
+#include <GOEN_Manager_Input.h>
 
 
 Manager_Input::Manager_Input()

@@ -1,7 +1,8 @@
 #include <nds.h>
 #include <nds/arm9/videoGL.h>
-#include "Model_Vector.h"
-#include "Model_Rotation.h"
+
+#include <GOEN_Model_Vector.h>
+#include <GOEN_Model_Rotation.h>
 
 
 #ifndef _Model_CAMERA

@@ -1,4 +1,4 @@
-#include "Manager_Display.h"
+#include <GOEN_Manager_Display.h>
 
 
 Manager_Display::Manager_Display()
@@ -71,7 +71,6 @@ void Manager_Display::setup_screen()
     //SUB_BG0_CR = BG_MAP_BASE(31);
     //BG_PALETTE_SUB[255] = RGB15(31,31,31);//by default font rendered with color 255
     //consoleInitDefault((u16*)SCREEN_BASE_BLOCK_SUB(31), (u16*)CHAR_BASE_BLOCK_SUB(0), 16);
-
     consoleDemoInit();
 
     //lcdMainOnBottom();

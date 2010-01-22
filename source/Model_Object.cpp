@@ -1,4 +1,4 @@
-#include "Model_Object.h"
+#include <GOEN_Model_Object.h>
 
 
 Model_Object::Model_Object()

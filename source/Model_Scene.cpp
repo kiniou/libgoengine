@@ -1,4 +1,4 @@
-#include "Model_Scene.h"
+#include <GOEN_Model_Scene.h>
 
 
 Model_Scene::Model_Scene()

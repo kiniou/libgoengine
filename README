@@ -1,0 +1,15 @@
+This lib is a small set of functions for developping 2D/3D animations, transitions 
+with models, cameras or sprites.
+
+It's not aimed to be a big popular lib, it just fit my needs for testing my export 
+script with Blender (look at my repo called blender-nds-exporter).
+
+To test the current demo with the current binary files:
+- just clone the git (or unzip the archive) somewhere
+- you just need to have the latest DevkitPro release only
+- make sure you have correctly set your DevkitPro environnement (i.e DEVKITPRO and DEVKITARM environnement variables)
+- then type 'make' in console at the root 
+- and you're good to test the demo in the demo directory.
+
+To test your own exported models, (I assume you have a little bit of C/C++ knowledge) read the source code of the demo and 
+modify the name of texture and binary file in "App_Test.cpp" and "data.h".

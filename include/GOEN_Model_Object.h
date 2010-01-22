@@ -4,8 +4,8 @@
 #include <nds.h>
 #include <stdlib.h>
 
-#include "Model_Vector.h"
-#include "Model_Face.h"
+#include <GOEN_Model_Vector.h>
+#include <GOEN_Model_Face.h>
 
 
 class Model_Object

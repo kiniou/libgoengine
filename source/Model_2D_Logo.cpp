@@ -1,4 +1,4 @@
-#include "Model_2D_Logo.h"
+#include <GOEN_Model_2D_Logo.h>
 
 Model_2D_Logo::Model_2D_Logo()
 {

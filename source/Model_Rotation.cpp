@@ -1,4 +1,4 @@
-/* File : Model_Rotation.h
+/* File : Model_Rotation.cpp
  * Purpose : This class defines a Rotation and its methods
  * Author : Kevin "KiNiOu" ROY
  * Creation Date : 29 May 2007
@@ -7,7 +7,7 @@
  *
  */
 
-#include "Model_Rotation.h"
+#include <GOEN_Model_Rotation.h>
 
 
 Model_Rotation::Model_Rotation ()

@@ -1,4 +1,4 @@
-#include "Model_2D_Menu.h"
+#include <GOEN_Model_2D_Menu.h>
 
 Model_2D_Menu::Model_2D_Menu()
 {
